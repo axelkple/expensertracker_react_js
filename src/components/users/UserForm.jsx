@@ -1,40 +1,139 @@
 import { Save, RotateCcw } from 'lucide-react';
+import { useForm } from "react-hook-form"
 
 const UserForm = () => {
 
+    const defaultFormValue = {
+
+        id: 0,
+        firstName: '',
+        lastName: '',
+        email: '',
+        password: '',
+    }
+
+    const {
+        register,
+        handleSubmit,
+        watch,
+        formState: { errors },
+    } = useForm({
+        defaultValues: defaultFormValue
+    });
+
+    const onFormSubmit = (data) => {
+        console.log(data);
+
+    }
     return (
-        <div className="bg-white rounded-xl shadow-lg border border-gray-100 p-6" style={{ marginBottom: '5px' }}>
-            <div className="space-y-4">
-                <div className="flex flex-col sm:flex-row gap-4">
-                    <div className="flex-1">
+        <div className="bg-white rounded-xl shadow-lg border border-gray-100 p-6 mb-1">
+            <form className="space-y-4" onSubmit={handleSubmit(onFormSubmit)}>
+                <div className="flex flex-col gap-4">
+                    <input
+                        type="hidden" {...register("id")}
+                    />
+                    {/* First Name */}
+                    <div>
                         <label htmlFor="firstName" className="block text-sm font-medium text-gray-700 mb-2">
                             First Name*
                         </label>
                         <input
-                            type="text"
-                            className="w-full px-4 py-3 rounded-lg border transition-all duration-200 focus:outline-none focus:ring-2" placeholder="Enter first name"
+                            type="test" {...register("firstName", {
+                                required: true,
+                                maxLength: 30
+                            })}
+                            aria-invalid={errors.firstName ? "true" : "false"}
+                            // id="firstName"
+                            // name="firstName"
+                            className="w-full px-4 py-3 rounded-lg border border-gray-300 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                            placeholder="Enter first name"
                         />
 
-                        <p className="mt-1 text-sm text-red-600 flex items-center">
-                            First Name required
-                        </p>
+                        {errors.firstName?.type === "required" && (
+                            <p className="mt-1 text-sm text-red-600 flex items-center">
+                                First Name is required
+                            </p>
+                        )}
+
+                        {errors.firstName?.type === "maxLength" && (
+                            <p className="mt-1 text-sm text-red-600 flex items-center">
+                                First Name can not exceed 30 characteres
+                            </p>
+                        )}
                     </div>
 
-                    <div className="flex-1">
+                    {/* Last Name */}
+                    <div>
                         <label htmlFor="lastName" className="block text-sm font-medium text-gray-700 mb-2">
                             Last Name*
                         </label>
                         <input
-                            type="text"
-                            id="lastName"
-                            name="lastName"
-
-                            className="w-full px-4 py-3 rounded-lg border transition-all duration-200 focus:outline-none focus:ring-2" placeholder="Enter last name"
+                            type="test" {...register("lastName", {
+                                required: true,
+                                maxLength: 30
+                            })}
+                            // id="lastName"
+                            // name="lastName"
+                            className="w-full px-4 py-3 rounded-lg border border-gray-300 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                            placeholder="Enter last name"
                         />
-                        <p className="mt-1 text-sm text-red-600 flex items-center">
-                            Last Name required
-                        </p>
+                        {errors.lastName?.type === "required" && (
+                            <p className="mt-1 text-sm text-red-600 flex items-center">
+                                Last Name is required
+                            </p>
+                        )}
+
+                        {errors.lastName?.type === "maxLength" && (
+                            <p className="mt-1 text-sm text-red-600 flex items-center">
+                                Last Name can not exceed 30 characteres
+                            </p>
+                        )}
                     </div>
+
+                    {/* Email */}
+                    <div>
+                        <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                            Email*
+                        </label>
+                        <input
+                            type="email" {...register("email", {
+                                required: true,
+                                maxLength: 30
+                            })}
+                            // id="email"
+                            // name="email"
+                            className="w-full px-4 py-3 rounded-lg border border-gray-300 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                            placeholder="Enter Email"
+                        />
+                          {errors.email?.type === "required" && (
+                            <p className="mt-1 text-sm text-red-600 flex items-center">
+                                Email is required
+                            </p>
+                        )}
+                    </div>
+
+                    {/* Password */}
+                    <div>
+                        <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2">
+                            Password*
+                        </label>
+                        <input
+                            type="password" {...register("password", {
+                                required: true,
+                                maxLength: 30
+                            })}
+                            // id="password"
+                            // name="password"
+                            className="w-full px-4 py-3 rounded-lg border border-gray-300 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                            placeholder="Enter Password"
+                        />
+                         {errors.password?.type === "required" && (
+                            <p className="mt-1 text-sm text-red-600 flex items-center">
+                                password is required
+                            </p>
+                        )}
+                    </div>
+
                 </div>
 
                 {/* Buttons */}
@@ -44,6 +143,7 @@ const UserForm = () => {
                         className="flex items-center justify-center px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-500 text-white font-medium rounded-lg hover:from-blue-600 hover:to-purple-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-200 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
                     >
                         <Save className="w-4 h-4 mr-2" />
+                        Save
                     </button>
 
                     <button
@@ -54,9 +154,9 @@ const UserForm = () => {
                         Reset
                     </button>
                 </div>
-            </div>
+            </form>
         </div>
     );
 };
 
-export default UserForm
+export default UserForm;
