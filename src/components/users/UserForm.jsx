@@ -80,11 +80,11 @@ const UserForm = ({ methods, onFormReset, onFormSubmit }) => {
 
                     {/* Email */}
                     <div>
-                        <label htmlFor="Email" className="block text-sm font-medium text-gray-700 mb-2">
+                        <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
                             Email*
                         </label>
                         <input
-                            type="email" {...register("Email", {
+                            type="email" {...register("email", {
                                 required: true,
                                 maxLength: 30
                             })}
@@ -102,13 +102,13 @@ const UserForm = ({ methods, onFormReset, onFormSubmit }) => {
 
                     {/* Password */}
                     <div>
-                        <label htmlFor="Password" className="block text-sm font-medium text-gray-700 mb-2">
+                        <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2">
                             Password*
                         </label>
                         <input
-                            type="password" {...register("Password", {
+                            type="password" {...register("password", {
                                 required: true,
-                                maxLength: 30
+                                minLength: 8
                             })}
                             // id="password"
                             // name="password"
@@ -120,6 +120,13 @@ const UserForm = ({ methods, onFormReset, onFormSubmit }) => {
                                 password is required
                             </p>
                         )}
+
+                           {errors.password?.type === "minLength" && (
+                            <p className="mt-1 text-sm text-red-600 flex items-center">
+                               Password must be at least 6 characters
+                            </p>
+                        )}
+                   
                     </div>
 
                 </div>
