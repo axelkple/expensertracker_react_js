@@ -1,30 +1,18 @@
 import { Save, RotateCcw } from 'lucide-react';
 import { useForm } from "react-hook-form"
 
-const UserForm = () => {
+const UserForm = ({ methods, onFormReset, onFormSubmit }) => {
 
-    const defaultFormValue = {
 
-        id: 0,
-        firstName: '',
-        lastName: '',
-        email: '',
-        password: '',
-    }
 
     const {
         register,
         handleSubmit,
-        watch,
         formState: { errors },
-    } = useForm({
-        defaultValues: defaultFormValue
-    });
+    } = methods;
+ 
 
-    const onFormSubmit = (data) => {
-        console.log(data);
-
-    }
+ 
     return (
         <div className="bg-white rounded-xl shadow-lg border border-gray-100 p-6 mb-1">
             <form className="space-y-4" onSubmit={handleSubmit(onFormSubmit)}>
@@ -92,11 +80,11 @@ const UserForm = () => {
 
                     {/* Email */}
                     <div>
-                        <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                        <label htmlFor="Email" className="block text-sm font-medium text-gray-700 mb-2">
                             Email*
                         </label>
                         <input
-                            type="email" {...register("email", {
+                            type="email" {...register("Email", {
                                 required: true,
                                 maxLength: 30
                             })}
@@ -105,7 +93,7 @@ const UserForm = () => {
                             className="w-full px-4 py-3 rounded-lg border border-gray-300 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-purple-500"
                             placeholder="Enter Email"
                         />
-                          {errors.email?.type === "required" && (
+                        {errors.email?.type === "required" && (
                             <p className="mt-1 text-sm text-red-600 flex items-center">
                                 Email is required
                             </p>
@@ -114,11 +102,11 @@ const UserForm = () => {
 
                     {/* Password */}
                     <div>
-                        <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2">
+                        <label htmlFor="Password" className="block text-sm font-medium text-gray-700 mb-2">
                             Password*
                         </label>
                         <input
-                            type="password" {...register("password", {
+                            type="password" {...register("Password", {
                                 required: true,
                                 maxLength: 30
                             })}
@@ -127,7 +115,7 @@ const UserForm = () => {
                             className="w-full px-4 py-3 rounded-lg border border-gray-300 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-purple-500"
                             placeholder="Enter Password"
                         />
-                         {errors.password?.type === "required" && (
+                        {errors.password?.type === "required" && (
                             <p className="mt-1 text-sm text-red-600 flex items-center">
                                 password is required
                             </p>
@@ -139,7 +127,7 @@ const UserForm = () => {
                 {/* Buttons */}
                 <div className="flex flex-col sm:flex-row gap-3 pt-2">
                     <button
-                        type="submit"
+                        type="submit" 
                         className="flex items-center justify-center px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-500 text-white font-medium rounded-lg hover:from-blue-600 hover:to-purple-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-200 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
                     >
                         <Save className="w-4 h-4 mr-2" />
@@ -147,7 +135,7 @@ const UserForm = () => {
                     </button>
 
                     <button
-                        type="button"
+                        type="button" onClick ={onFormReset}
                         className="flex items-center justify-center px-6 py-3 bg-gray-100 text-gray-700 font-medium rounded-lg hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition-all duration-200 transform hover:scale-105"
                     >
                         <RotateCcw className="w-4 h-4 mr-2" />
