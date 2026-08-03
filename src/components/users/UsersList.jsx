@@ -20,17 +20,18 @@ const UsersList = ({ userdata, onUserEdit, onUserDelete }) => {
                             <th className="px-3.5 py-3 text-xs font-semibold text-gray-700">First Name</th>
                             <th className="px-3.5 py-3 text-xs font-semibold text-gray-700">Last Name</th>
                             <th className="px-3.5 py-3 text-xs font-semibold text-gray-700">Email</th>
-                            <th className="px-3.5 py-3 text-xs font-semibold text-gray-700">Password</th>
+                            {/* <th className="px-3.5 py-3 text-xs font-semibold text-gray-700">Password</th> */}
                             <th className="px-3.5 py-3 text-center text-xs font-semibold text-gray-700">Actions</th>
                         </tr>
                     </thead>
                     <tbody className="divide-y divide-gray-100">
                         {userdata.map((user) => (
+                            
                             <tr key={user.id} className="hover:bg-gray-50 transition-colors">
                                 <td className="px-3.5 py-3 text-sm font-medium text-gray-900">{user.firstName}</td>
                                 <td className="px-3.5 py-3 text-sm font-medium text-gray-900">{user.lastName}</td>
                                 <td className="px-3.5 py-3 text-sm text-gray-700">{user.Email || user.email}</td>
-                                <td className="px-3.5 py-3 text-sm text-gray-700">{user.Password || user.password}</td>
+                                {/* <td className="px-3.5 py-3 text-sm text-gray-700">{user.Password || user.password}</td> */}
 
                                 <td className="px-3.5 py-3 text-center">
                                     <div className="flex items-center justify-center space-x-1.5">
