@@ -33,7 +33,7 @@ function Accounts() {
 
     }, []);
 
-        useEffect(() => {
+    useEffect(() => {
         methods.reset(editData);
     }, [editData])
 
@@ -64,7 +64,7 @@ function Accounts() {
 
 
         const accountId = Number(account.id);
-       
+
         try {
 
             await axios.delete(`${BASE_URL}/${accountId}`);
@@ -72,7 +72,7 @@ function Accounts() {
 
             setAccount((prevAccount) => prevAccount.filter((item) => Number(item.id) !== accountId));
 
-           
+
             toast.success('Successfully deleted!');
         } catch (error) {
             console.error("Delete Error:", error.response?.data || error.message);

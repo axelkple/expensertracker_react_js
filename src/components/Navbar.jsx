@@ -40,17 +40,15 @@ const Navbar = () => {
 
   // Helper classes
   const getDesktopClass = ({ isActive }) =>
-    `px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 transform hover:scale-105 ${
-      isActive
-        ? 'bg-gradient-to-r from-blue-500 to-purple-500 text-white shadow-lg'
-        : 'text-gray-700 hover:text-blue-600 hover:bg-blue-50'
+    `px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 transform hover:scale-105 ${isActive
+      ? 'bg-gradient-to-r from-blue-500 to-purple-500 text-white shadow-lg'
+      : 'text-gray-700 hover:text-blue-600 hover:bg-blue-50'
     }`;
 
   const getMobileClass = ({ isActive }) =>
-    `block px-4 py-3 rounded-lg text-base font-medium transition-all duration-200 ${
-      isActive
-        ? 'bg-gradient-to-r from-blue-500 to-purple-500 text-white shadow-md transform scale-105'
-        : 'text-gray-700 hover:text-blue-600 hover:bg-white hover:shadow-sm'
+    `block px-4 py-3 rounded-lg text-base font-medium transition-all duration-200 ${isActive
+      ? 'bg-gradient-to-r from-blue-500 to-purple-500 text-white shadow-md transform scale-105'
+      : 'text-gray-700 hover:text-blue-600 hover:bg-white hover:shadow-sm'
     }`;
 
   return (
@@ -78,17 +76,15 @@ const Navbar = () => {
                   onClick={() => setIsDropdownOpen((prev) => !prev)}
                   aria-haspopup="true"
                   aria-expanded={isDropdownOpen}
-                  className={`flex items-center space-x-1 px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 focus:outline-none ${
-                    isDropdownActive
+                  className={`flex items-center space-x-1 px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 focus:outline-none ${isDropdownActive
                       ? 'bg-gradient-to-r from-blue-500 to-purple-500 text-white shadow-lg'
                       : 'text-gray-700 hover:text-blue-600 hover:bg-blue-50'
-                  }`}
+                    }`}
                 >
                   <span>Services</span>
                   <ChevronDown
-                    className={`w-4 h-4 transition-transform duration-200 ${
-                      isDropdownOpen ? 'rotate-180' : ''
-                    }`}
+                    className={`w-4 h-4 transition-transform duration-200 ${isDropdownOpen ? 'rotate-180' : ''
+                      }`}
                   />
                 </button>
 
@@ -99,10 +95,9 @@ const Navbar = () => {
                       to="/Users"
                       onClick={() => setIsDropdownOpen(false)}
                       className={({ isActive }) =>
-                        `block px-4 py-2 text-sm font-medium transition-colors ${
-                          isActive
-                            ? 'bg-blue-50 text-blue-600 font-semibold'
-                            : 'text-gray-700 hover:bg-gray-50 hover:text-blue-600'
+                        `block px-4 py-2 text-sm font-medium transition-colors ${isActive
+                          ? 'bg-blue-50 text-blue-600 font-semibold'
+                          : 'text-gray-700 hover:bg-gray-50 hover:text-blue-600'
                         }`
                       }
                     >
@@ -112,16 +107,30 @@ const Navbar = () => {
                       to="/Account"
                       onClick={() => setIsDropdownOpen(false)}
                       className={({ isActive }) =>
-                        `block px-4 py-2 text-sm font-medium transition-colors ${
-                          isActive
-                            ? 'bg-blue-50 text-blue-600 font-semibold'
-                            : 'text-gray-700 hover:bg-gray-50 hover:text-blue-600'
+                        `block px-4 py-2 text-sm font-medium transition-colors ${isActive
+                          ? 'bg-blue-50 text-blue-600 font-semibold'
+                          : 'text-gray-700 hover:bg-gray-50 hover:text-blue-600'
                         }`
                       }
                     >
                       Account
                     </NavLink>
+
+                       <NavLink
+                      to="/Category"
+                      onClick={() => setIsDropdownOpen(false)}
+                      className={({ isActive }) =>
+                        `block px-4 py-2 text-sm font-medium transition-colors ${isActive
+                          ? 'bg-blue-50 text-blue-600 font-semibold'
+                          : 'text-gray-700 hover:bg-gray-50 hover:text-blue-600'
+                        }`
+                      }
+                    >
+                      Category
+                    </NavLink>
                   </div>
+
+                  
                 )}
               </div>
             </div>
@@ -148,11 +157,10 @@ const Navbar = () => {
 
       {/* Mobile Navigation Menu */}
       <div
-        className={`md:hidden transition-all duration-300 ease-in-out ${
-          isMenuOpen
+        className={`md:hidden transition-all duration-300 ease-in-out ${isMenuOpen
             ? 'max-h-[500px] opacity-100 visible overflow-y-auto'
             : 'max-h-0 opacity-0 invisible overflow-hidden'
-        }`}
+          }`}
       >
         <div className="px-2 pt-2 pb-3 space-y-1 bg-gray-50 border-t border-gray-200">
           <NavLink
@@ -168,17 +176,15 @@ const Navbar = () => {
             <button
               type="button"
               onClick={() => setIsMobileDropdownOpen((prev) => !prev)}
-              className={`w-full flex justify-between items-center px-4 py-3 rounded-lg text-base font-medium transition-all duration-200 ${
-                isDropdownActive
+              className={`w-full flex justify-between items-center px-4 py-3 rounded-lg text-base font-medium transition-all duration-200 ${isDropdownActive
                   ? 'bg-gradient-to-r from-blue-500 to-purple-500 text-white shadow-md'
                   : 'text-gray-700 hover:text-blue-600 hover:bg-white'
-              }`}
+                }`}
             >
               <span>Services</span>
               <ChevronDown
-                className={`w-5 h-5 transition-transform duration-200 ${
-                  isMobileDropdownOpen ? 'rotate-180' : ''
-                }`}
+                className={`w-5 h-5 transition-transform duration-200 ${isMobileDropdownOpen ? 'rotate-180' : ''
+                  }`}
               />
             </button>
 
@@ -197,6 +203,14 @@ const Navbar = () => {
                   className={getMobileClass}
                 >
                   Account
+                </NavLink>
+
+                <NavLink
+                  to="/Category"
+                  onClick={closeMobileMenu}
+                  className={getMobileClass}
+                >
+                  Category
                 </NavLink>
               </div>
             )}
