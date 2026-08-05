@@ -77,8 +77,8 @@ const Navbar = () => {
                   aria-haspopup="true"
                   aria-expanded={isDropdownOpen}
                   className={`flex items-center space-x-1 px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 focus:outline-none ${isDropdownActive
-                      ? 'bg-gradient-to-r from-blue-500 to-purple-500 text-white shadow-lg'
-                      : 'text-gray-700 hover:text-blue-600 hover:bg-blue-50'
+                    ? 'bg-gradient-to-r from-blue-500 to-purple-500 text-white shadow-lg'
+                    : 'text-gray-700 hover:text-blue-600 hover:bg-blue-50'
                     }`}
                 >
                   <span>Services</span>
@@ -116,7 +116,7 @@ const Navbar = () => {
                       Account
                     </NavLink>
 
-                       <NavLink
+                    <NavLink
                       to="/Category"
                       onClick={() => setIsDropdownOpen(false)}
                       className={({ isActive }) =>
@@ -128,9 +128,22 @@ const Navbar = () => {
                     >
                       Category
                     </NavLink>
+
+                        <NavLink
+                      to="/PaymentMethod"
+                      onClick={() => setIsDropdownOpen(false)}
+                      className={({ isActive }) =>
+                        `block px-4 py-2 text-sm font-medium transition-colors ${isActive
+                          ? 'bg-blue-50 text-blue-600 font-semibold'
+                          : 'text-gray-700 hover:bg-gray-50 hover:text-blue-600'
+                        }`
+                      }
+                    >
+                      Payment Method
+                    </NavLink>
                   </div>
 
-                  
+
                 )}
               </div>
             </div>
@@ -158,8 +171,8 @@ const Navbar = () => {
       {/* Mobile Navigation Menu */}
       <div
         className={`md:hidden transition-all duration-300 ease-in-out ${isMenuOpen
-            ? 'max-h-[500px] opacity-100 visible overflow-y-auto'
-            : 'max-h-0 opacity-0 invisible overflow-hidden'
+          ? 'max-h-[500px] opacity-100 visible overflow-y-auto'
+          : 'max-h-0 opacity-0 invisible overflow-hidden'
           }`}
       >
         <div className="px-2 pt-2 pb-3 space-y-1 bg-gray-50 border-t border-gray-200">
@@ -177,8 +190,8 @@ const Navbar = () => {
               type="button"
               onClick={() => setIsMobileDropdownOpen((prev) => !prev)}
               className={`w-full flex justify-between items-center px-4 py-3 rounded-lg text-base font-medium transition-all duration-200 ${isDropdownActive
-                  ? 'bg-gradient-to-r from-blue-500 to-purple-500 text-white shadow-md'
-                  : 'text-gray-700 hover:text-blue-600 hover:bg-white'
+                ? 'bg-gradient-to-r from-blue-500 to-purple-500 text-white shadow-md'
+                : 'text-gray-700 hover:text-blue-600 hover:bg-white'
                 }`}
             >
               <span>Services</span>
@@ -211,6 +224,14 @@ const Navbar = () => {
                   className={getMobileClass}
                 >
                   Category
+                </NavLink>
+
+                <NavLink
+                  to="/PaymentMethod"
+                  onClick={closeMobileMenu}
+                  className={getMobileClass}
+                >
+                  Payment Method
                 </NavLink>
               </div>
             )}
